@@ -1,0 +1,13 @@
+#python bytecode
+__pycache__/
+#virtual enviroment
+*.py[cod]
+env/
+#local setting
+*.sqlite3
+*.log
+#ide config
+.vscode/
+.idea/
+#ignore media
+/media/
