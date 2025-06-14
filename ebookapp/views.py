@@ -3,16 +3,15 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-
 from .models import Book,Category
-from ebook.serializers import BookSerializer, CatagorySerializer
-
+from .serializers import BookSerializer, CatagorySerializer
+from rest_framework import generics,permissions
 
 # home page 
 def home(request):
     return JsonResponse({'message':'Hello and Welcome'})
     
-
+@api_view(['GET','POST'])
 #list all books or create new ones
 def book_list(request):
     if request.method == 'GET':
@@ -27,7 +26,7 @@ def book_list(request):
             return Response(serializer.data,Status=status.HTTP_201_CREATED)
             return Response(serializer.error,Status=status.HTTP_400_BAD_REQUEST)
         
-        
+@api_view(['GET','PUT','DELETE'])        
 def book_detail(request,pk):
     try:
         book = Book.object.get(pk=pk)
@@ -51,3 +50,14 @@ def book_detail(request,pk):
 
 #handles get,post,put,delete for CRUD
 #uses serializer to convert model data to json   
+# List all books or create a new one
+class BookListCreateView(generics.ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+# Retrieve, update or delete a book
+class BookRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]

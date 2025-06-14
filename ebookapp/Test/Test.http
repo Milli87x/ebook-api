@@ -1,0 +1,36 @@
+### Create a book
+POST http://127.0.0.1:8000/api/books/
+Content-Type: application/json
+{
+  "title": "New Book",
+  "author": "Milla",
+  "description": "This is a new book."
+}
+### Update a book
+PUT http://127.0.0.1:8000/api/books/1/
+Content-Type: application/json
+{
+  "title": "Updated Title",
+  "author": "Milla",
+  "description": "Updated description."
+}
+### Delete a book
+DELETE http://127.0.0.1:8000/api/books/1/
+### Register
+POST http://127.0.0.1:8000/api/users/register/
+Content-Type: application/json
+
+{
+  "username": "milla",
+  "email": "milliyongebrehiwot870@gmail.com",
+  "password": "milliyon"
+}
+
+### Login
+POST http://127.0.0.1:8000/api/users/login/
+Content-Type: application/json
+
+{
+  "username": "milla",
+  "password": "milliyon"
+}
