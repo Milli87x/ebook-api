@@ -1,11 +1,11 @@
-from django.shortcuts import render
+
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status,generics,permissions
 from .models import Book,Category
 from .serializers import BookSerializer, CatagorySerializer
-from rest_framework import generics,permissions
+
 
 # home page 
 def home(request):

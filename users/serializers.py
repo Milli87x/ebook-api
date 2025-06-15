@@ -19,7 +19,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
 
-# Optional: Custom token serializer if you want to add more data to the token
+#Custom token serializer 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
